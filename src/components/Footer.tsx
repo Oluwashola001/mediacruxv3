@@ -98,10 +98,10 @@ export default function Footer() {
               AI-powered video advertising that converts. Delivered in 48 hours.
             </p>
             <a 
-              href="mailto:hello@mediacrux.com"
+              href="mailto:mediacrux361@gmail.com"
               className="text-[#00FF00] hover:underline font-semibold"
             >
-              hello@mediacrux.com
+              mediacrux361@gmail.com
             </a>
           </motion.div>
 
