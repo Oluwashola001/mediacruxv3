@@ -81,7 +81,7 @@ export default function Header() {
             {isOpen ? (
               <HiX className="text-white w-8 h-8" />
             ) : (
-              <HiMenu className="text-[#00FF00] w-8 h-8" />
+              <HiMenu className="text-white w-8 h-8" />
             )}
           </button>
         </div>
