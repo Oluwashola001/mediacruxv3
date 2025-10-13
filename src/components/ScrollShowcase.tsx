@@ -48,8 +48,7 @@ export default function ScrollShowcase() {
   return (
     <section id="projects" className="w-full bg-black text-white pb-12 md:pb-18">
       {/* Section 1: Client Request */}
-      <div className="min-h-0 md:min-h-screen flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-6 md:px-16 py-6 md:py-24 bg-gradient-to-b from-black to-gray-900">
-        
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-6 md:px-16 py-12 md:py-16 bg-gradient-to-b from-black to-gray-900">        
         {/* ✅ Lottie Animation */}
         <motion.div 
           className="w-full md:w-1/2 h-[300px] md:h-[600px] flex items-center justify-center"
