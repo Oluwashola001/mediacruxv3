@@ -36,13 +36,13 @@ const scenes = [
 export default function ScrollShowcase() {
   const [isHovering, setIsHovering] = useState(false);
   return (
-    <section id="projects" className="w-full bg-black text-white pb-18">
+    <section id="projects" className="w-full bg-black text-white pb-12 md:pb-18">
       {/* Section 1: Client Request */}
-      <div className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 px-6 md:px-16 py-24 bg-gradient-to-b from-black to-gray-900">
+      <div className="min-h-[80vh] md:min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 md:px-16 py-16 md:py-24 bg-gradient-to-b from-black to-gray-900">
       
         {/* Spline Embed */}
         <motion.div 
-          className="w-full md:w-1/2 h-[400px] md:h-[600px] flex items-center justify-center"
+          className="w-full md:w-1/2 h-[300px] md:h-[600px] flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
           whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -54,14 +54,14 @@ export default function ScrollShowcase() {
 
         {/* Text Content */}
         <motion.div
-          className="w-full md:w-1/2 text-left md:text-left space-y-6 relative"
+          className="w-full md:w-1/2 text-left md:text-left space-y-4 md:space-y-6 relative"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1 }}
         >
           <motion.h2 
-            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -71,7 +71,7 @@ export default function ScrollShowcase() {
           </motion.h2>
         
           <motion.p 
-            className="text-gray-300 text-lg md:text-2xl leading-relaxed"
+            className="text-gray-300 text-base md:text-2xl leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -88,7 +88,7 @@ export default function ScrollShowcase() {
 
           {/* Animated Arrow with Link */}
           <motion.div
-            className="w-full flex justify-center md:justify-end pt-6"
+            className="w-full flex justify-center md:justify-end pt-4 md:pt-6"
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -101,14 +101,14 @@ export default function ScrollShowcase() {
               className="flex flex-col items-center group cursor-pointer"
             >
               {/* Label */}
-              <span className="mb-2 text-white text-base md:text-xl font-medium tracking-wide group-hover:text-[#00FF00] transition-colors duration-300">
+              <span className="mb-2 text-white text-sm md:text-xl font-medium tracking-wide group-hover:text-[#00FF00] transition-colors duration-300">
                 View Script
               </span>
 
               {/* Arrow */}
               <motion.svg
-                width="80"
-                height="50"
+                width="60"
+                height="40"
                 viewBox="0 0 100 60"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,7 @@ export default function ScrollShowcase() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="group-hover:translate-x-2 transition-transform duration-300"
+                className="group-hover:translate-x-2 transition-transform duration-300 md:w-20 md:h-12"
               >
                 <path
                   d="M10 30 L70 30 M70 30 L55 20 M70 30 L55 40"
@@ -134,9 +134,9 @@ export default function ScrollShowcase() {
       </div>
 
       {/* Section 2: What We Delivered */}
-      <div className="min-h-screen flex flex-col items-center justify-start pt-24 px-6 md:px-16 bg-gradient-to-b from-gray-900 to-black">
+      <div className="flex flex-col items-center justify-start pt-16 md:pt-24 px-6 md:px-16 bg-gradient-to-b from-gray-900 to-black">
         <motion.h2
-          className="text-4xl md:text-6xl font-bold mb-12 text-center"
+          className="text-3xl md:text-6xl font-bold mb-12 md:mb-16 text-center"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -146,7 +146,7 @@ export default function ScrollShowcase() {
         </motion.h2>
 
         {/* Scene showcase */}
-        <div className="w-full flex flex-col gap-24">
+        <div className="w-full flex flex-col gap-12 md:gap-24">
           {scenes.map((scene, index) => (
             <SceneBlock key={scene.id} scene={scene} flip={index % 2 !== 0} />
           ))}
@@ -154,9 +154,9 @@ export default function ScrollShowcase() {
       </div>
 
       {/* Section 3: Final Video */}
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 pt-12 md:px-16 bg-gradient-to-t from-black to-gray-900">
+      <div className="flex flex-col items-center justify-center px-6 pt-16 md:pt-20 pb-12 md:pb-16 md:px-16 bg-gradient-to-t from-black to-gray-900">
         <motion.h2
-          className="text-4xl md:text-6xl font-bold mb-8 text-center"
+          className="text-3xl md:text-6xl font-bold mb-8 md:mb-12 text-center"
           initial={{ opacity: 0, y: 50, rotateX: -20 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -182,7 +182,7 @@ export default function ScrollShowcase() {
         </motion.div>
         <motion.a
           href="#contact"
-          className="mt-8 inline-block relative overflow-hidden px-10 py-5 text-white font-bold rounded-full border-2 border-white/40 transition-all duration-500 hover:border-[#00FF00] hover:shadow-[0_0_30px_rgba(0,255,0,0.3)] group"
+          className="mt-8 inline-block relative overflow-hidden px-8 md:px-10 py-4 md:py-5 text-sm md:text-base text-white font-bold rounded-full border-2 border-white/40 transition-all duration-500 hover:border-[#00FF00] hover:shadow-[0_0_30px_rgba(0,255,0,0.3)] group"
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -220,13 +220,13 @@ function SceneBlock({ scene, flip }: { scene: any; flip: boolean }) {
   return (
     <div
       ref={ref}
-      className={`min-h-screen flex flex-col ${
+      className={`flex flex-col ${
         flip ? "md:flex-row-reverse" : "md:flex-row"
-      } items-center justify-center px-6 md:px-16 gap-10`}
+      } items-center justify-center px-6 md:px-16 gap-6 md:gap-10 py-8 md:py-0`}
     >
       {/* Image */}
       <motion.div
-        className="relative w-full md:w-1/2 h-80 md:h-[500px] rounded-2xl overflow-hidden shadow-lg"
+        className="relative w-full md:w-1/2 h-64 md:h-[500px] rounded-2xl overflow-hidden shadow-lg"
         initial={{ opacity: 0, x: flip ? 100 : -100, rotateY: flip ? 15 : -15 }}
         animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: flip ? 100 : -100, rotateY: flip ? 15 : -15 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -248,7 +248,7 @@ function SceneBlock({ scene, flip }: { scene: any; flip: boolean }) {
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
       >
         <motion.h3 
-          className="text-3xl md:text-5xl font-bold mb-4"
+          className="text-2xl md:text-5xl font-bold mb-3 md:mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -256,7 +256,7 @@ function SceneBlock({ scene, flip }: { scene: any; flip: boolean }) {
           {scene.title}
         </motion.h3>
         <motion.p 
-          className="text-lg md:text-2xl text-gray-300"
+          className="text-base md:text-2xl text-gray-300"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
