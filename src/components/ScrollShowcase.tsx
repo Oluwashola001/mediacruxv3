@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Lottie from "lottie-react";
 import { useInView } from "react-intersection-observer";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 
 const scenes = [
   {
@@ -35,12 +35,22 @@ const scenes = [
 
 export default function ScrollShowcase() {
   const [isHovering, setIsHovering] = useState(false);
+  const [animationData, setAnimationData] = useState<any>(null);
+
+  // ✅ Safely load Lottie animation from /public/animations
+  useEffect(() => {
+    fetch("/animations/chatgpt.json")
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data))
+      .catch((err) => console.error("Failed to load Lottie JSON:", err));
+  }, []);
+
   return (
     <section id="projects" className="w-full bg-black text-white pb-12 md:pb-18">
       {/* Section 1: Client Request */}
       <div className="min-h-0 md:min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 md:px-16 py-8 md:py-24 bg-gradient-to-b from-black to-gray-900">
-      
-        {/* Spline Embed */}
+        
+        {/* ✅ Lottie Animation */}
         <motion.div 
           className="w-full md:w-1/2 h-[300px] md:h-[600px] flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
@@ -48,8 +58,14 @@ export default function ScrollShowcase() {
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          <iframe src='https://my.spline.design/chatgptkeyboard-fDpOKK4feQBLl8abGu5xM4BV/'
-           frameBorder='0' width='100%' height='100%'></iframe>
+          {animationData && (
+            <Lottie 
+              animationData={animationData} 
+              loop 
+              autoplay 
+              style={{ width: "100%", height: "100%" }}
+            />
+          )}
         </motion.div>
 
         {/* Text Content */}
@@ -100,12 +116,9 @@ export default function ScrollShowcase() {
               rel="noopener noreferrer"
               className="flex flex-col items-center group cursor-pointer"
             >
-              {/* Label */}
               <span className="mb-2 text-white text-sm md:text-xl font-medium tracking-wide group-hover:text-[#00FF00] transition-colors duration-300">
                 View Script
               </span>
-
-              {/* Arrow */}
               <motion.svg
                 width="60"
                 height="40"
@@ -145,7 +158,6 @@ export default function ScrollShowcase() {
           What We <span className="text-[#00FF00]">Delivered</span>
         </motion.h2>
 
-        {/* Scene showcase */}
         <div className="w-full flex flex-col gap-12 md:gap-24">
           {scenes.map((scene, index) => (
             <SceneBlock key={scene.id} scene={scene} flip={index % 2 !== 0} />
@@ -164,6 +176,7 @@ export default function ScrollShowcase() {
         >
           <span className="text-[#00FF00]">Final</span> Video
         </motion.h2>
+
         <motion.div
           className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-lg"
           initial={{ opacity: 0, scale: 0.85, y: 50 }}
@@ -180,6 +193,7 @@ export default function ScrollShowcase() {
             className="w-full h-full"
           ></iframe>
         </motion.div>
+
         <motion.a
           href="#contact"
           className="mt-8 inline-block relative overflow-hidden px-8 md:px-10 py-4 md:py-5 text-sm md:text-base text-white font-bold rounded-full border-2 border-white/40 transition-all duration-500 hover:border-[#00FF00] hover:shadow-[0_0_30px_rgba(0,255,0,0.3)] group"
@@ -201,9 +215,7 @@ export default function ScrollShowcase() {
               duration: 0.7,
               ease: [0.34, 1.56, 0.64, 1]
             }}
-            style={{ 
-              transformOrigin: "center",
-            }}
+            style={{ transformOrigin: "center" }}
           />
           <span className="relative z-10 transition-colors duration-400 group-hover:text-black">
             Ready in 48 Hours – Get Yours
@@ -224,33 +236,26 @@ function SceneBlock({ scene, flip }: { scene: any; flip: boolean }) {
         flip ? "md:flex-row-reverse" : "md:flex-row"
       } items-center justify-center px-6 md:px-16 gap-6 md:gap-10 py-8 md:py-0`}
     >
-      {/* Image */}
       <motion.div
         className="relative w-full md:w-1/2 h-64 md:h-[500px] rounded-2xl overflow-hidden shadow-lg"
         initial={{ opacity: 0, x: flip ? 100 : -100, rotateY: flip ? 15 : -15 }}
-        animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: flip ? 100 : -100, rotateY: flip ? 15 : -15 }}
+        animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
         transition={{ duration: 1.2, ease: "easeOut" }}
         whileHover={{ scale: 1.05, rotateY: flip ? -5 : 5, transition: { duration: 0.3 } }}
       >
-        <Image
-          src={scene.image}
-          alt={scene.title}
-          fill
-          className="object-cover"
-        />
+        <Image src={scene.image} alt={scene.title} fill className="object-cover" />
       </motion.div>
 
-      {/* Text */}
       <motion.div
         className="w-full md:w-1/2 text-center md:text-left"
         initial={{ opacity: 0, x: flip ? -100 : 100, y: 30 }}
-        animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: flip ? -100 : 100, y: 30 }}
+        animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
       >
         <motion.h3 
           className="text-2xl md:text-5xl font-bold mb-3 md:mb-4"
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {scene.title}
@@ -258,7 +263,7 @@ function SceneBlock({ scene, flip }: { scene: any; flip: boolean }) {
         <motion.p 
           className="text-base md:text-2xl text-gray-300"
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           {scene.text}
