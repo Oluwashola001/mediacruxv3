@@ -55,8 +55,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full min-h-screen bg-black text-white overflow-hidden">
-      <div className="relative w-full flex items-center justify-center px-6 md:px-16 py-24 bg-gradient-to-b from-black via-gray-900 to-black">
+    <section id="contact" className="relative w-full bg-black text-white overflow-hidden">
+      <div className="relative w-full flex items-center justify-center px-6 md:px-16 py-12 md:py-16 bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-4xl w-full mx-auto">
           {/* Header */}
           <motion.div
