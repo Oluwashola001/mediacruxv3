@@ -185,12 +185,12 @@ export default function ScrollShowcase() {
           whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
         >
           <iframe
-            src="https://www.youtube.com/embed/yXDb0URplWI?autoplay=1&mute=1&loop=1&playlist=yXDb0URplWI"
-            title="Final Video"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            className="w-full h-full"
-          ></iframe>
+          src="https://www.youtube.com/embed/yXDb0URplWI?autoplay=0&mute=1&loop=1&playlist=yXDb0URplWI"
+          title="Final Video"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          className="w-full h-full"
+        ></iframe>
         </motion.div>
 
         <motion.a
