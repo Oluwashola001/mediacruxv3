@@ -72,46 +72,70 @@ export default function Header() {
         </nav>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center relative z-[60]">
           <button 
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 hover:bg-white/5 rounded-lg transition-all duration-200"
             aria-label="Toggle menu"
           >
-            {isOpen ? <HiX className="text-white w-7 h-7" /> : <HiMenu className="text-white w-7 h-7" />}
+            {isOpen ? (
+              <HiX className="text-white w-8 h-8" />
+            ) : (
+              <HiMenu className="text-[#00FF00] w-8 h-8" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.7 }}
-            className="md:hidden bg-black border-t border-white/10 overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black z-[55] md:hidden"
           >
-            <div className="flex flex-col px-6 py-6 space-y-5">
-              {navLinks.map((link) => (
-                <Link
+            <motion.div 
+              className="flex flex-col items-center justify-center h-full space-y-8 px-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              {navLinks.map((link, index) => (
+                <motion.div
                   key={link.name}
-                  href={link.href}
-                  className="text-white text-base font-medium tracking-wide uppercase transition-all duration-300 hover:text-[#00FF00] hover:pl-3"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
+                >
+                  <Link
+                    href={link.href}
+                    className="text-white text-2xl font-medium tracking-wide uppercase transition-all duration-300 hover:text-[#00FF00] block text-center"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+                className="pt-4"
+              >
+                <Link
+                  href="#contact"
+                  className="px-10 py-4 bg-[#00FF00] text-black font-bold text-base tracking-wide uppercase rounded-full hover:bg-[#00DD00] transition-all duration-300 inline-block"
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.name}
+                  Book a Call
                 </Link>
-              ))}
-              <Link
-                href="#contact"
-                className="px-8 py-3 bg-transparent text-white font-bold text-sm tracking-wide uppercase rounded-full border-2 border-white/30 hover:bg-[#00FF00] hover:text-black hover:border-[#00FF00] transition-all duration-500 text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Book a Call
-              </Link>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

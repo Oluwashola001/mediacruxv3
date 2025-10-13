@@ -38,7 +38,7 @@ export default function ScrollShowcase() {
   return (
     <section id="projects" className="w-full bg-black text-white pb-12 md:pb-18">
       {/* Section 1: Client Request */}
-      <div className="min-h-[80vh] md:min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 md:px-16 py-16 md:py-24 bg-gradient-to-b from-black to-gray-900">
+      <div className="min-h-0 md:min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-6 md:px-16 py-8 md:py-24 bg-gradient-to-b from-black to-gray-900">
       
         {/* Spline Embed */}
         <motion.div 
@@ -134,7 +134,7 @@ export default function ScrollShowcase() {
       </div>
 
       {/* Section 2: What We Delivered */}
-      <div className="flex flex-col items-center justify-start pt-16 md:pt-24 px-6 md:px-16 bg-gradient-to-b from-gray-900 to-black">
+      <div className="flex flex-col items-center justify-start pt-16 md:pt-24 pb-16 md:pb-24 px-6 md:px-16 bg-gradient-to-b from-gray-900 to-black">
         <motion.h2
           className="text-3xl md:text-6xl font-bold mb-12 md:mb-16 text-center"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
