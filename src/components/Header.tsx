@@ -32,7 +32,7 @@ export default function Header() {
     <header 
       className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
       style={{
-        backgroundColor: isScrolled ? 'rgb(0, 0, 85)' : 'transparent',
+        backgroundColor: isScrolled ? 'rgb(0, 0, 0.85)' : 'transparent',
         borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent'
       }}
     >
