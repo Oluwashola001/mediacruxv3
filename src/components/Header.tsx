@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
@@ -16,10 +16,27 @@ const navLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-4 md:py-6">
+    <header 
+      className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+      style={{
+        backgroundColor: isScrolled ? 'rgb(0, 0, 85)' : 'transparent',
+        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent'
+      }}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-1.5 md:py-3">
         {/* Logo + Brand */}
         <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
           <Image
