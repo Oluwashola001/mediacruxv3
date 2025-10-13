@@ -48,7 +48,7 @@ export default function ScrollShowcase() {
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          <iframe src='https://my.spline.design/earthdayandnight-AF2vOB1apnhVuFTm6pzwr46D/'
+          <iframe src='https://my.spline.design/chatgptkeyboard-fDpOKK4feQBLl8abGu5xM4BV/'
            frameBorder='0' width='100%' height='100%'></iframe>
         </motion.div>
 
